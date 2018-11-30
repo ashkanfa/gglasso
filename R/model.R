@@ -96,7 +96,7 @@ wls <- function(bn, bs, ix, iy, nobs, nvars, x, y, pf, weight, dfmax,
     #################################################################################
     # output
     outlist <- getoutput(fit, maxit, pmax, nvars, vnames)
-    outlist <- c(outlist, list(npasses = fit$npass, jerr = fit$jerr, group = group))
+    outlist <- c(outlist, list(npasses = fit$npass, jerr = fit$jerr, group = group, weight= weight))
     class(outlist) <- c("ls")
     outlist
 }
