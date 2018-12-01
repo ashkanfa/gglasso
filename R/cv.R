@@ -88,6 +88,7 @@ cv.gglasso <- function(x, y, group, lambda = NULL, pred.loss = c("misclass",
         stop("delta must be non-negtive")
     gglasso.object <- gglasso(x, y, group, lambda = lambda, delta = delta, ...)
     lambda <- gglasso.object$lambda
+    wt <- gglasso.object[["weight"]]
     # predict -> coef
     if (missing(foldid)) 
         foldid <- sample(rep(seq(nfolds), length = N)) else nfolds <- max(foldid)
@@ -98,8 +99,9 @@ cv.gglasso <- function(x, y, group, lambda = NULL, pred.loss = c("misclass",
     for (i in seq(nfolds)) {
         which <- foldid == i
         y_sub <- y[!which]
-        outlist[[i]] <- gglasso(x = x[!which, , drop = FALSE], y = y_sub, group = group, 
-            lambda = lambda, delta = delta, ...)
+	wt_sub <- wt[!which, !which, drop = FALSE]    
+        outlist[[i]] <- gglasso(x = x[!which, , drop = FALSE], y = y_sub, weight=wt[!which, !which,drop=FALSE],
+				group = group, lambda = lambda, delta = delta)
     }
     ###What to do depends on the pred.loss and the model fit
     fun <- paste("cv", class(gglasso.object)[[2]], sep = ".")
