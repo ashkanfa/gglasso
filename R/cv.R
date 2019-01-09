@@ -101,7 +101,7 @@ cv.gglasso <- function(x, y, group, lambda = NULL, pred.loss = c("misclass",
         y_sub <- y[!which]
 	wt_sub <- wt[!which, !which, drop = FALSE]    
         outlist[[i]] <- gglasso(x = x[!which, , drop = FALSE], y = y_sub, weight=wt[!which, !which,drop=FALSE],
-				group = group, lambda = lambda, delta = delta)
+				group = group, lambda = lambda, delta = delta, ...)
     }
     ###What to do depends on the pred.loss and the model fit
     fun <- paste("cv", class(gglasso.object)[[2]], sep = ".")
