@@ -245,5 +245,5 @@ cv.ls <- function(outlist, lambda, x, y, foldid, pred.loss, delta) {
     cvm <- apply(cvraw, 2, mean, na.rm = TRUE)
     cvsd <- sqrt(apply(scale(cvraw, cvm, FALSE)^2, 2, mean, na.rm = TRUE)/(N - 
         1))
-    list(cvm = cvm, cvsd = cvsd, name = typenames[pred.loss])
+    list(cvm = cvm, cvsd = cvsd, name = typenames[pred.loss],cvraw=cvraw,predmat=predmat)
 } 
