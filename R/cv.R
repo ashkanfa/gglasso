@@ -86,8 +86,8 @@ cv.gglasso <- function(x, y, group, lambda = NULL, pred.loss = c("misclass",
         delta <- 1
     if (delta < 0) 
         stop("delta must be non-negtive")
-    gglasso.object <- gglasso(x, y, group, lambda = lambda, delta = delta, ...)
-    lambda <- gglasso.object$lambda
+    gglasso.object <- gglasso(x, y, group, lambda = NULL, delta = delta, ...)
+    lambda <- gglasso.object[["lambda"]]
     wt <- gglasso.object[["weight"]]
     # predict -> coef
     if (missing(foldid)) 
