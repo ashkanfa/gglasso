@@ -109,8 +109,11 @@ cv.gglasso <- function(x, y, group, lambda = NULL, pred.loss = c("misclass",
     cvm <- cvstuff$cvm
     cvsd <- cvstuff$cvsd
     cvname <- cvstuff$name
+    cvraw <- cvstuff$cvraw
+    predmat<-cvstuff$predmat
+		
     out <- list(lambda = lambda, cvm = cvm, cvsd = cvsd, cvupper = cvm + cvsd, 
-        cvlo = cvm - cvsd, name = cvname, gglasso.fit = gglasso.object)
+        cvlo = cvm - cvsd, name = cvname,cvraw=cvraw,predmat=predmat, gglasso.fit = gglasso.object)
     lamin <- getmin(lambda, cvm, cvsd)
     obj <- c(out, as.list(lamin))
     class(obj) <- "cv.gglasso"
