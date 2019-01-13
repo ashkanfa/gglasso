@@ -13,7 +13,7 @@ ls <- function(bn, bs, ix, iy, nobs, nvars, x, y, pf, dfmax,
     #################################################################################
     # output
     outlist <- getoutput(fit, maxit, pmax, nvars, vnames)
-    outlist <- c(outlist, list(npasses = fit$npass, jerr = fit$jerr, group = group))
+    outlist <- c(outlist, list(npasses = fit$npass, jerr = fit$jerr, group = group,pf=pf))
     class(outlist) <- c("ls")
     outlist
 }
@@ -95,7 +95,7 @@ wls <- function(bn, bs, ix, iy, nobs, nvars, x, y, pf, weight, dfmax,
     #################################################################################
     # output
     outlist <- getoutput(fit, maxit, pmax, nvars, vnames)
-    outlist <- c(outlist, list(npasses = fit$npass, jerr = fit$jerr, group = group,weight=weight))
+    outlist <- c(outlist, list(npasses = fit$npass, jerr = fit$jerr, group = group,weight=weight,pf=pf))
     class(outlist) <- c("ls")
     outlist
 }
